@@ -1,0 +1,1 @@
+print(chr((ord('가') - 1) + int(input())))
