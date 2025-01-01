@@ -1,23 +1,19 @@
-from math import sqrt
-
 K = int(input())
 
-length = 479909
+maximum_number = 10 ** 7
 
-number_list = [0, 0] + list(range(2, length + 1))
+number_list = [0, 0] + ([1] * (maximum_number - 1))
 
-count = 0
-prime = 0
+for i in range(2, int(maximum_number ** 0.5) + 1):
+    
+    if number_list[i] == 0:
+        continue
 
-for i in range(2, int(sqrt(length + 1)) + 1):
-    for j in range(i * 2, length + 1, i):
-        number_list[j] = 0
+    for j in range(i * 2, maximum_number + 1, i):
+        
+        if number_list[j] != 0:
+            number_list[j] = 0
 
-for number in number_list:
-    if number != 0:
-        count += 1
-        prime = number
+prime_list = [0] + [k for k in range(maximum_number + 1) if number_list[k]]
 
-    if count == K:
-        print(prime)
-        break
+print(prime_list[K])
