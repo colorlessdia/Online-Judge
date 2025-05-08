@@ -9,8 +9,8 @@ matched_hash = dict(zip(lowercase, range(1, 26 + 1)))
 hash_value = 0
 
 for i in range(L):
-    char = S[i]
+    H = matched_hash[S[i]] * (31 ** i)
 
-    hash_value += (matched_hash[char] * (31 ** i)) % M
+    hash_value += H
 
-print(hash_value)
+print(hash_value % M)
