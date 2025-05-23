@@ -2,34 +2,24 @@ import sys
 
 input = sys.stdin.readline
 
-eight_number_list = [int('8' * i) for i in range(1, 18 + 1)]
+eight_number_list = [int('8' * i) for i in range(18, 0, -1)]
 
 T = int(input())
 
 for _ in range(T):
-    N = input().rstrip()
+    N = int(input())
 
-    index = len(N)
-    N = int(N)
-
-    target = eight_number_list[index]
     count = 0
 
-    while 0 < N:
+    for eight_number in eight_number_list:
         
-        if N < target:
-            index -= 1
-
-            if index < 0:
-                break
-
-            target = eight_number_list[index]
+        if N < eight_number:
             continue
+        
+        while eight_number <= N:
+            N -= eight_number
+            count += 1
 
-        N -= target
-        count += 1
+    result = 'Yes' if N == 0 and count <= 8 else 'No'
 
-    if N == 0 and count <= 8:
-        print('Yes')
-    else:
-        print('No')
+    print(result)
